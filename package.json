@@ -1,0 +1,24 @@
+{
+  "name": "gin-htmx-boilerplate",
+  "version": "1.0.0",
+  "description": "This is a boilerplate repository for developing web apps with Go, Gin, Postgres, HTMX, and Tailwindcss.",
+  "author": "Risto Virtaharju",
+  "license": "CC0-1.0",
+  "scripts": {
+    "dev": "vite",
+    "build:dev": "vite build --mode development --watch",
+    "build:prod": "vite build --mode production"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "autoprefixer": "^10.4.20",
+    "dbmate": "^2.24.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "htmx.org": "^2.0.4"
+  }
+}

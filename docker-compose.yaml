@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+# psql -h localhost -U myapp
+  postgresd:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: myapp
+      POSTGRES_DATABASE: myapp
+    restart: on-failure
