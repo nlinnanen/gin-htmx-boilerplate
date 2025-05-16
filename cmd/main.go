@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func main() {
@@ -18,15 +18,13 @@ func main() {
 	timeoutCtx, cancel := context.WithTimeout(context.Background(), timeoutDuration)
 	defer cancel()
 
-	conn, err := pgx.Connect(timeoutCtx, "postgres://myapp:secret@localhost:5432/myapp?sslmode=disable")
+	pool, err := pgxpool.New(timeoutCtx, "postgres://myapp:secret@localhost:5432/myapp?sslmode=disable")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
-	defer conn.Close(context.Background())
-	q := db.New(conn)
-
-	
+	defer pool.Close()
+	q := db.New(pool)
 
 	// Start Gin router
 	router := router.SetupRouter(q)
